@@ -1,0 +1,15 @@
+This product includes software developed at
+Computer Vision Laboratory, EPFL
+(https://github.com/cvlab-epfl/wide-depth-range-pose).
+
+----------------------------------------------------
+Modifications by Nithish:
+- Adapted data pipeline for custom dataset support
+- Modified training scripts and evaluation code
+- Other adjustments for dataset compatibility
+Computer Vision Laboratory, EPFL
+(https://github.com/cvlab-epfl/wide-depth-range-pose).
+
+----------------------------------------------------
+Modifications by Nithish:
+- Adapted data pipeline for custom dataset support
