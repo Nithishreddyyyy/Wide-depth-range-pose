@@ -1,29 +1,50 @@
+## Wide-Depth-Range-Pose (Modified Version)
 
-# Overview
+This repository is based on [Wide-Depth-Range-Pose](https://github.com/cvlab-epfl/wide-depth-range-pose) by Yinlin Hu, Sébastien Speierer, Wenzel Jakob, Pascal Fua, and Mathieu Salzmann (CVPR 2021).
+It has been **modified by Nithish** to work with custom datasets and adapted for specific use cases.
 
-This repository contains the dataset and code in paper [**Wide-Depth-Range 6D Object Pose Estimation in Space**](https://arxiv.org/abs/2104.00337). Yinlin Hu, Sébastien Speierer, Wenzel Jakob, Pascal Fua and Mathieu Salzmann. CVPR 2021.
+---
 
-6D pose estimation in space poses unique challenges that are not commonly encountered in the terrestrial setting. One of the most striking differences is the lack of atmospheric scattering, allowing objects to be visible from a great distance while complicating illumination conditions. Minimizing the 2D reprojection error is a common strategy for 6D pose estimation. This strategy, however, suffers when handling wide-depth-range targets. 
+## Overview
+
+The original work addresses 6D object pose estimation in space, where wide depth ranges and illumination challenges make conventional approaches less effective.
+This repository builds on that foundation but includes modifications to support training and evaluation on non-SwissCube datasets.
 
 <p align="center">
   <img width="600" src="./resources/Problem_of_rep_error.png">
-  <br>
-  <em>Problem with minimizing the 2D reprojection error. (a) The red lines denote the 2D reprojection errors for points p1 and p2. Because one is closer to the camera than the other, these 2D errors are of about the same magnitude even though the corresponding 3D errors, shown in blue, are very different. (b) For the same object at different locations, the same 2D error can generate different 3D errors. This makes pose accuracy dependent on the relative position of the target to the camera. We propose to minimize the loss in 3D space, which can effectively remove the position-related bias.</em>
 </p>
 
-On the other hand, currently available benchmark datasets do not place a sufficient emphasis on space scenario and mostly depict the target in close proximity. To overcome this problem, we also introduce SwissCube dataset, the first space-borne dataset with an accurate 3D model, physically-based rendering, and physical simulations of the Sun, the Earth, and the stars.
+---
 
-<p align="center">
-  <img width="600" src="./resources/SwissCube_Rendering.gif">
-  <br>
-  <em>The rendering breadown of SwissCube</em>
-</p>
+## Modifications in This Version
 
-# How to Use
+* Adapted data loading pipeline for custom dataset support
+* Modified training configuration files
+* Updated evaluation scripts for dataset compatibility
+* Additional tweaks for performance improvements
 
-Download the SwissCube dataset from [**here**](https://huggingface.co/datasets/EPFL-CVLAB-SPACECRAFT/SwissCube/tree/main), and create proper links according to the config file "./configs/swisscube.yaml". Most of the code is self-explaining and a pretrained model is available at [**here**](https://huggingface.co/EPFL-CVLAB-SPACECRAFT/Wide-Depth-Range/resolve/main/swisscube_pretrained.pth). Just start from "train.sh" (or "test.sh") and have fun.
+---
 
-# Citing
+## How to Use
+
+Download your dataset and configure the dataset path in the corresponding YAML config file.
+Run training via:
+
+```bash
+sh train.sh
+```
+
+Run testing via:
+
+```bash
+sh test.sh
+```
+
+---
+
+## Citing
+
+If you use this work in your research, please cite the **original paper**:
 
 ```
 @inproceedings{hu2021wdrpose,
@@ -32,23 +53,28 @@ Download the SwissCube dataset from [**here**](https://huggingface.co/datasets/E
   booktitle={CVPR},
   year={2021}
 }
-@inproceedings{hu2020singlestagepose,
-  title={Single-Stage 6D Object Pose Estimation},
-  author={Yinlin Hu and Pascal Fua and Wei Wang and Mathieu Salzmann},
-  booktitle={CVPR},
-  year={2020}
-}
-@inproceedings{hu2019segpose,
-  title={Segmentation-driven 6D Object Pose Estimation},
-  author={Yinlin Hu and Joachim Hugonot and Pascal Fua and Mathieu Salzmann},
-  booktitle={CVPR},
-  year={2019}
-}
 ```
 
-# Notes
+---
 
-* The model in this repo has much higher accuracy than the paper version after tweaking hyper-parameters. The claims of the paper, nevertheless, still hold.
-* Some code snippets are adapted from: https://github.com/facebookresearch/maskrcnn-benchmark
+## Notes
 
+* This is a **modified version** of the original codebase. See [NOTICE](./NOTICE) for details.
+* The original repo can be found at: [https://github.com/cvlab-epfl/wide-depth-range-pose](https://github.com/cvlab-epfl/wide-depth-range-pose)
 
+---
+
+# NOTICE
+
+This product includes software developed at
+Computer Vision Laboratory, EPFL
+([https://github.com/cvlab-epfl/wide-depth-range-pose](https://github.com/cvlab-epfl/wide-depth-range-pose)).
+
+---
+
+Modifications by Nithish:
+
+* Adapted data loading pipeline for custom dataset support
+* Modified training configuration files
+* Updated evaluation scripts for dataset compatibility
+* Additional tweaks for performance improvements
