@@ -1,0 +1,34 @@
+MODEL:
+  BACKBONE: 'darknet53'
+  ANCHOR_SIZES: [32, 64, 128, 256, 512]
+  ANCHOR_STRIDES: [8, 16, 32, 64, 128]
+DATASETS:
+  TRAIN: '../Dataset111/speedBOP/training.txt'
+  VALID: '../Dataset111/speedBOP/validation.txt'
+  TEST: '../Dataset111/speedBOP/testing.txt'
+  MESH_DIR: '../Dataset111/speedBOP/models/'
+  BBOX_FILE: '../Dataset111/speedBOP/swisscube_bbox.json'
+  MESH_DIAMETERS: [178.46]
+  N_CLASS: 2
+INPUT:
+  INTERNAL_WIDTH: 640
+  INTERNAL_HEIGHT: 640
+  INTERNAL_K: [1001.1376, 0, 320, 0, 1601.8202, 320, 0, 0, 1]
+SOLVER:
+  IMS_PER_BATCH: 8
+  #
+  BASE_LR: 0.01
+  STEPS_PER_EPOCH: 10000
+  MAX_ITER: 300000
+  SCHEDULER_POLICY: 'multi_steps'
+  SCHEDULER_PARAMS: {'steps': [200000, 270000], 'gamma': 0.1}
+  #
+  LOSS_WEIGHT_CLS: 0.01
+  LOSS_WEIGHT_REG: 0.1
+  POSITIVE_LAMBDA: 1.0
+  AUGMENTATION_SHIFT: 0.1
+  AUGMENTATION_SCALE: 0.1
+  AUGMENTATION_ROTATION: 180
+TEST:
+  IMS_PER_BATCH: 1
+  CONFIDENCE_TH: 0.3
