@@ -1,0 +1,37 @@
+MODEL:
+  BACKBONE: 'darknet53'
+  ANCHOR_SIZES: [32, 64, 128, 256, 512]
+  ANCHOR_STRIDES: [8, 16, 32, 64, 128]
+DATASETS:
+  TRAIN: '../Dataset111/speedBOP/training.txt'
+  VALID: '../Dataset111/speedBOP/validation.txt'
+  TEST: '../Dataset111/speedBOP/testing.txt'
+  MESH_DIR: '../Dataset111/speedBOP/models/'
+  BBOX_FILE: '../Dataset111/speedBOP/swisscube_bbox.json'
+  MESH_DIAMETERS: [1053.7906]
+  N_CLASS: 2
+INPUT:
+  INTERNAL_WIDTH: 960
+  INTERNAL_HEIGHT: 960
+  INTERNAL_K: [1501.7064, 0, 480, 0, 2402.7303, 480, 0, 0, 1]
+SOLVER:
+  IMS_PER_BATCH: 16
+  #IMS as per GPU specs
+  BASE_LR: 0.02
+  #Base learning rate = (0.02 * ims per batch )/ 16
+  STEPS_PER_EPOCH: 500
+  #Steps per Epoch will be (num of train images / images per batch)
+  MAX_ITER: 15000 
+  #Numebr of epochs * Steps per epoch
+  SCHEDULER_POLICY: 'multi_steps'
+  SCHEDULER_PARAMS: {'steps': [9000, 12000], 'gamma': 0.1}
+  #
+  LOSS_WEIGHT_CLS: 0.01
+  LOSS_WEIGHT_REG: 0.1
+  POSITIVE_LAMBDA: 1.0
+  AUGMENTATION_SHIFT: 0.1
+  AUGMENTATION_SCALE: 0.1
+  AUGMENTATION_ROTATION: 180
+TEST:
+  IMS_PER_BATCH: 16
+  CONFIDENCE_TH: 0.3
